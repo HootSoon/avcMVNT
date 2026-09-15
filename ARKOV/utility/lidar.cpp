@@ -9,6 +9,7 @@ lidar::initalize(){
     ld->initializeSerial(p); 
     ld->setLidarWorkMode(8); 
     ld->startLidarRotation();
+    ld->runParse();
     get_pointcloud();
 }
 
