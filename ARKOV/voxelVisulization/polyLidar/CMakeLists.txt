@@ -34,7 +34,8 @@ add_executable(polyscope_lidar
 # 4. Include the exact folder where unitree_lidar_sdk.h lives
 target_include_directories(polyscope_lidar PRIVATE 
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/../types
+    ${CMAKE_CURRENT_SOURCE_DIR}../.
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../types
     ${unilidar_sdk2_SOURCE_DIR}/unitree_lidar_sdk/include
 )
 
