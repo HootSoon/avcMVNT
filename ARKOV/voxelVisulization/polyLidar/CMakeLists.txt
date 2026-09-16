@@ -27,7 +27,7 @@ endif()
 
 # 3. Add executable
 add_executable(polyscope_lidar 
-    polyscope_lidar.cpp 
+    polyscope_lidar_test.cpp 
     voxel_map.cpp
 )
 
