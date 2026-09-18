@@ -9,7 +9,7 @@ public:
     serial::Serial serialCom;
 
     // Constructor
-    microcontroller(std::string port = "COM13", uint16_t baud = 115200);
+    microcontroller(std::string port = "COM13", uint32_t baud = 115200);
     
     // Functions
     void send_Message(std::string message, std::string type);

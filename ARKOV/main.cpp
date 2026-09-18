@@ -6,17 +6,17 @@
 #include "utility/lidar/lidar.hh"
 #include "utility/cameras/cameras.hh"
 #include "localization/particleFilter.hh"
-#include "encoded/driveOdometry.h"
+#include "encoded/driveOdometry.hh"
 #include <unistd.h>
 
-microcontroller stm32("COM13", 115200);
+microcontroller stm32("/dev/ttyUSB1", 115200);
 pidController leftPID(0.30, 0.05, 0.10);
 pidController rightPID(0.30, 0.05, 0.10);
 VoxelGrid map(100, 100, 50, 0.1);          
-lidar ld;
+lidar ld("/dev/ttyACM0");
 particleFilter pf(100, 0.0f, 0.0f, 0.0f);  
 driveOdometry driveOdom;
-slamManager slamMan(&pf, &driveOdom, &map, &ld);
+// slamManager slamMan(&pf, &driveOdom, &map, &ld);
 
 int main(){
     // slamMan.startUp();

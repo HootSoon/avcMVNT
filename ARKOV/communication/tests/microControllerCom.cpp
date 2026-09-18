@@ -2,7 +2,7 @@
 #include "microControllerCom.h"
 #include <iostream>
 
-microcontroller::microcontroller(std::string port, uint16_t baud)
+microcontroller::microcontroller(std::string port, uint32_t baud)
     : serialCom(port, baud, serial::Timeout::simpleTimeout(1000))
 {
     if (serialCom.isOpen()){

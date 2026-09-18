@@ -22,7 +22,8 @@ struct Particle {
 
 struct LiDARPoint {
     float x, y, z;
-    float world_x, world_y, world_z; // Added to fix compile error in slamManager.cpp
+    float world_x, world_y, world_z;
+    float intensity;
 };
 
 #endif

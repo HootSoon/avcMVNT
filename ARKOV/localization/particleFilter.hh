@@ -7,12 +7,14 @@
     \addtogroup SLAM
 */
 
+class VoxelGrid;
+
 class particleFilter{
 
 public:
     particleFilter(int count, float start_x, float start_y, float start_theta);
     void predict(float delta_x, float delta_y, float delta_theta);
-    void updateWeights(const VoxelMap& map, const std::vector<LiDARPoint>& scan);
+    void updateWeights(const VoxelGrid& map, const std::vector<LiDARPoint>& scan);
     void resample(); // resampling, particle generator
 
     Particle getBestPose();

@@ -1,4 +1,5 @@
-#include "particlefilter.hh"
+#include "particleFilter.hh"
+#include "voxel_map.hh"
 #include <cmath>
 #include <algorithm>
 #include <limits>
@@ -53,7 +54,7 @@ void particleFilter::predict(float delta_x, float delta_y, float delta_theta) {
     }
 }
 
-void particleFilter::updateWeights(const VoxelMap& map, const std::vector<LiDARPoint>& scan) {
+void particleFilter::updateWeights(const VoxelGrid& map, const std::vector<LiDARPoint>& scan) {
     // Convert header pitch degrees to radians and precompute trig
     constexpr float PITCH_RAD = SENSOR_PITCH_DEG * (3.14159265359f / 180.0f);
     static const float cos_pitch = std::cos(PITCH_RAD);
@@ -85,7 +86,7 @@ void particleFilter::updateWeights(const VoxelMap& map, const std::vector<LiDARP
             float map_y = p.y + rotated_y;
             float map_z = SENSOR_Z_OFFSET + rotated_z; 
             
-            int voxel_state = map.getVoxelState(map_x, map_y, map_z);
+            int voxel_state = map.getVoxel(map_x, map_y, map_z);
             
             if (voxel_state == 1) { // 1 = OCCUPIED
                 log_weight += HIT_SCORE;
