@@ -2,6 +2,7 @@
 #include <fcntl.h>              // File Control , provides flags and functions for file operations
 #include <unistd.h>             // Unix Standard , provides the api for accessing files
 #include <linux/joystick.h>     // defines the memory layout of the joystick commands
+#include <iostream>
 
 // Possible values of type
 //#define JS_EVENT_BUTTON         0x01    /* button pressed/released */
@@ -25,7 +26,13 @@ int main() {
     }
 
     struct js_event e;
-    short axisVal = 0;
+
+    short xlaxisVal = 0;
+    short ylaxisVal = 0;
+
+    short xraxisVal = 0;
+    short yraxisVal = 0;
+
     bool condition = true;
 
     while (condition) {
@@ -35,8 +42,26 @@ int main() {
                 continue;
             }
 
-            if (e.type == JS_EVENT_AXIS) {
-                axisVal = e.value;
+            if (e.type == JS_EVENT_AXIS ) {
+                switch(e.number){
+                    case 0:
+                        xlaxisVal = e.value;
+                        break;
+                    case 1:
+                        ylaxisVal = e.value;
+                        break;
+                    case 2:
+                        xraxisVal = e.value;
+                        break;
+                    case 3:
+                        yraxisVal = e.value;
+                        break;
+                    default:
+                        std::cout << "Other axis than 0-4" << std::endl;
+                }
+                std::cout << "L (" << xlaxisVal << " : " << ylaxisVal << ") R (" << xraxisVal << " : " << yraxisVal << ")" << std::endl;
+                
+                
             }
 
             if (e.type == JS_EVENT_BUTTON && e.value == 1) {
