@@ -33,6 +33,8 @@ int main() {
     short xraxisVal = 0;
     short yraxisVal = 0;
 
+    short button = 0;
+
     bool condition = true;
 
     while (condition) {
@@ -63,11 +65,16 @@ int main() {
                 
                 
             }
+            if (e.type == JS_EVENT_BUTTON ) {
+                button = e.number;
+                std::cout << "Button Press: " << button << std::endl; 
+            }
 
-            if (e.type == JS_EVENT_BUTTON && e.value == 1) {
+/*          if (e.type == JS_EVENT_BUTTON && e.value == 0) {
+                std::cout << "Closing" << std::endl;
                 condition = false;
                 break;
-            }
+            } */
         }
         usleep(1000);
     }
