@@ -9,6 +9,7 @@
 #include "encoded/driveOdometry.hh"
 #include <unistd.h>
 
+controller controller("/dev/input/js0");
 microcontroller stm32("/dev/ttyUSB1", 115200);
 pidController leftPID(0.30, 0.05, 0.10);
 pidController rightPID(0.30, 0.05, 0.10);

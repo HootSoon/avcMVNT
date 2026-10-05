@@ -26,6 +26,7 @@ int main() {
 
     struct js_event e;
 
+    
     short xlaxisVal = 0;
     short ylaxisVal = 0;
 

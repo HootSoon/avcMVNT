@@ -3,7 +3,7 @@
 #include <unistd.h>             // Unix Standard , provides the api for accessing files
 #include <linux/joystick.h>     // defines the memory layout of the joystick commands
 #include <iostream>
-
+#include <serial/serial.h>
 // Possible values of type
 //#define JS_EVENT_BUTTON         0x01    /* button pressed/released */
 //#define JS_EVENT_AXIS           0x02    /* joystick moved */
@@ -16,13 +16,17 @@
 //        __u8 type;      /* event type */
 //        __u8 number;    /* axis/button number */
 //};
+serial::Serial mySerial("/dev/ttyACM0", 115200, serial::Timeout::simpleTimeout(1000));
 
+controller::controller(std::string port){
+    
 
-int main() {
-    // | is a bitwise or , you have to combine the startup flags
+    
     int fd = open("/dev/input/js0", O_RDONLY | O_NONBLOCK);
-    if (fd < 0) {
-        return 1;
+    if (fd < 0){
+        std::cerr << "Failed to find controller" << std::endl;
+    } else {
+        std::cout << "Controller connected" << std::endl;
     }
 
     struct js_event e;
@@ -61,7 +65,7 @@ int main() {
                     default:
                         std::cout << "Other axis than 0-4" << std::endl;
                 }
-                std::cout << "L (" << xlaxisVal << " : " << ylaxisVal << ") R (" << xraxisVal << " : " << yraxisVal << ")" << std::endl;
+                std::string cm = << "L (" << xlaxisVal << " : " << ylaxisVal << ") R (" << xraxisVal << " : " << yraxisVal << ")" << std::endl;
                 
                 
             }
@@ -82,3 +86,5 @@ int main() {
     close(fd);
     return 0;
 }
+}
+
