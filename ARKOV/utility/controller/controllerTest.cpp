@@ -69,6 +69,11 @@ int main() {
                 button = e.number;
                 std::cout << "Button Press: " << button << std::endl; 
             }
+            
+            if (e.type == JS_EVENT_HAT) {
+                hat = e.number;
+                std::cout << "Hat Press: " << hat << std::endl;
+            }
 
 /*          if (e.type == JS_EVENT_BUTTON && e.value == 0) {
                 std::cout << "Closing" << std::endl;

@@ -16,13 +16,15 @@
 //        __u8 type;      /* event type */
 //        __u8 number;    /* axis/button number */
 //};
+
+//Arduino serial
 serial::Serial mySerial("/dev/ttyACM0", 115200, serial::Timeout::simpleTimeout(1000));
+//Arm serial
+serial::Serial mySerial2("/dev/ttyUSB0", 115200, serial::Timeout::simpleTimeout(1000));
 
 controller::controller(std::string port){
-    
-
-    
     int fd = open("/dev/input/js0", O_RDONLY | O_NONBLOCK);
+    
     if (fd < 0){
         std::cerr << "Failed to find controller" << std::endl;
     } else {
@@ -41,9 +43,10 @@ controller::controller(std::string port){
 
     bool condition = true;
 
+    bool modestate = false;
+
     while (condition) {
         while (read(fd, &e, sizeof(e)) > 0) {
-            // At beginning of setup linux sends init information , we can ignore it, & is a bitwise and op
             if (e.type & JS_EVENT_INIT) {
                 continue;
             }
@@ -65,20 +68,56 @@ controller::controller(std::string port){
                     default:
                         std::cout << "Other axis than 0-4" << std::endl;
                 }
-                std::string cm = << "L (" << xlaxisVal << " : " << ylaxisVal << ") R (" << xraxisVal << " : " << yraxisVal << ")" << std::endl;
-                
                 
             }
             if (e.type == JS_EVENT_BUTTON ) {
-                button = e.number;
-                std::cout << "Button Press: " << button << std::endl; 
+                switch(e.number){
+                    case 0:
+                        if (e.value == 1){
+                            modestate = modestate!;
+                        }
+                        break;
+                    case 1:
+                        drivestate = e.value;
+                        break;
+                    case 3:
+                        unassigned = e.value;
+                        break;
+                    case 4:
+                        unassigned = e.value;
+                        break;
+                    case 6:
+                        flashbang = e.value;
+                        break;
+                    case 7:
+                        grenade = e.value;
+                        break;
+                    default:
+                        std::cout << "Other button than 0-7" << std::endl;
+                }
             }
-
-/*          if (e.type == JS_EVENT_BUTTON && e.value == 0) {
-                std::cout << "Closing" << std::endl;
-                condition = false;
-                break;
-            } */
+            //not sure what the hat values are, testing for that will be done later this week. 
+            if(e.type == JS_EVENT_HAT){
+                switch(e.number){
+                    case 0:
+                        uparrow = e.value;
+                        break;
+                    case 1:
+                        downarrow = e.value;
+                        break;
+                    case 2:
+                        leftarrow = e.value;        
+                        break;
+                    case 3:
+                        rightarrow = e.value;
+                        break:
+                    default:
+                        std::cout << "Other hat button than 0-3" << std::endl;
+                }
+            }
+            // std::string cm = 
+                //depending on decided drive control, we will either do a conditional of sending left stick values
+                //to arduino and right stick values to arm, or we will send left and right stick values to arduino.
         }
         usleep(1000);
     }
@@ -86,5 +125,5 @@ controller::controller(std::string port){
     close(fd);
     return 0;
 }
-}
+
 
