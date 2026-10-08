@@ -18,6 +18,7 @@ controller::controller(std::string port) {
     yraxisVal = 0;
 
     modestate = false;
+    drivestate = false;
 }
 
 bool controller::open() {
@@ -38,9 +39,61 @@ bool controller::open() {
 }
 
 void controller::close() {
-
+    if (fd >=0){
+        fd = -1;
+    }    
+    connected = false;
 }
 
 void controller::poll() { 
+    if (connected || fd < 0) {
+        continue;
+    }
+    else
+    {
+        std::cerr << "Controller not found" << std::endl;
+        return;
+    }
 
+    js_event e;
+
+    while (read(fd, &e, sizeof(e)) > 0) {
+        if (e.type & JS_EVENT_INIT) {
+            continue;
+        }
+
+        if (e.type == JS_EVENT_AXIS ) {
+            switch(e.number){
+                case 0:
+                    xlaxisVal = e.value;
+                    break;
+                case 1:
+                    ylaxisVal = e.value;
+                    break;
+                case 2:
+                    xraxisVal = e.value;
+                    break;
+                case 3:
+                    yraxisVal = e.value;
+                    break;
+                default:
+                    std::cout << "Other axis than 0-4" << std::endl;
+            }
+            
+        }
+        if (e.type == JS_EVENT_BUTTON ) {
+            switch(e.number){
+                case 0:
+                    if (e.value == 1){
+                        modestate = !modestate;
+                    }
+                    break;
+                case 1:                    
+                    if (e.value == 1){
+                        drivestate = !drivestate;
+                    }
+                    break;
+            }
+        }
+    }
 }

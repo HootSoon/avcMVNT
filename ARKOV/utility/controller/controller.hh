@@ -6,8 +6,6 @@
 class controller {
 public:
     controller(std::string port = "/dev/input/js0");
-
-private:
     std::string port;
     int fd;
     bool connected;
@@ -19,6 +17,7 @@ private:
     short yraxisVal;
 
     bool modestate;
+    bool drivestate;
 };
 
 
