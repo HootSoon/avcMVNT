@@ -3,6 +3,8 @@
 #include <linux/joystick.h>     // defines the memory layout of the joystick commands
 #include <iostream>
 
+#include "serial/serial.h"      // Serial for microcontroller communication
+
 // Possible values of type
 //#define JS_EVENT_BUTTON         0x01    /* button pressed/released */
 //#define JS_EVENT_AXIS           0x02    /* joystick moved */
@@ -15,6 +17,16 @@
 //        __u8 type;      /* event type */
 //        __u8 number;    /* axis/button number */
 //};
+
+
+
+// Serial Communication Setup
+std::string message = "";
+std::string baud = "COM13";
+uint32_t baud = 115200;
+serial::Serial serialCom(port, baud, serial::Timeout::simpleTimeout(1000));
+// --------------------------
+
 
 
 int main() {
@@ -36,6 +48,7 @@ int main() {
     short button = 0;
 
     bool condition = true;
+
 
     while (condition) {
         while (read(fd, &e, sizeof(e)) > 0) {
@@ -80,6 +93,13 @@ int main() {
                 condition = false;
                 break;
             } */
+
+            // Temporary testing serial to send commands to motors
+            if(serialCom.isOpen()){
+                message << xlaxisVal << " " << ylaxisVal << " " << xraxisVal << " " << yraxisVal << " \n";
+                serialCom.write(message);
+                message = "";
+            }
         }
         usleep(1000);
     }
