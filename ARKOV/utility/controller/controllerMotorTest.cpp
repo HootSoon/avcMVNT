@@ -2,6 +2,8 @@
 #include <unistd.h>             // Unix Standard , provides the api for accessing files
 #include <linux/joystick.h>     // defines the memory layout of the joystick commands
 #include <iostream>
+#include <string>
+#include <sstream>
 
 #include "serial/serial.h"      // Serial for microcontroller communication
 
@@ -22,7 +24,7 @@
 
 // Serial Communication Setup
 std::string message = "";
-std::string baud = "COM13";
+std::string port = "/dev/ttyACM0";
 uint32_t baud = 115200;
 serial::Serial serialCom(port, baud, serial::Timeout::simpleTimeout(1000));
 // --------------------------
@@ -82,11 +84,12 @@ int main() {
                 button = e.number;
                 std::cout << "Button Press: " << button << std::endl; 
             }
-            
+            /*
             if (e.type == JS_EVENT_HAT) {
                 hat = e.number;
                 std::cout << "Hat Press: " << hat << std::endl;
             }
+            */
 
 /*          if (e.type == JS_EVENT_BUTTON && e.value == 0) {
                 std::cout << "Closing" << std::endl;
@@ -96,9 +99,11 @@ int main() {
 
             // Temporary testing serial to send commands to motors
             if(serialCom.isOpen()){
-                message << xlaxisVal << " " << ylaxisVal << " \n";
-                serialCom.write(message);
-                message = "";
+                std::ostringstream msg;
+                msg << "L" << static_cast<int>((ylaxisVal/32767.0f)*100.0f) << ",R" << static_cast<int>((yraxisVal/32767.0f)*100.0f) << "\n";
+                std::cout << msg.str();
+                serialCom.write(msg.str());
+                usleep(1000);
             }
         }
         usleep(1000);

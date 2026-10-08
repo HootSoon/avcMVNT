@@ -11,7 +11,6 @@ void VoxelGrid::setVoxel(int x, int y, int z, uint8_t value) {
     }
 }
 
-
 void VoxelGrid::updateVoxelMiss(int x, int y, int z, uint8_t penalty) {
     if (x >= 0 && x < sizeX && y >= 0 && y < sizeY && z >= 0 && z < sizeZ) {
         uint8_t& voxel = data[getIndex(x, y, z)];
