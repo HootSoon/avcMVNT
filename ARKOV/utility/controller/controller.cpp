@@ -46,12 +46,7 @@ void controller::close() {
 }
 
 void controller::poll() { 
-    if (connected || fd < 0) {
-        continue;
-    }
-    else
-    {
-        std::cerr << "Controller not found" << std::endl;
+    if (!connected || fd < 0) {
         return;
     }
 
