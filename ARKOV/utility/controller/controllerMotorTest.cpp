@@ -96,7 +96,7 @@ int main() {
 
             // Temporary testing serial to send commands to motors
             if(serialCom.isOpen()){
-                message << xlaxisVal << " " << ylaxisVal << " " << xraxisVal << " " << yraxisVal << " \n";
+                message << xlaxisVal << " " << ylaxisVal << " \n";
                 serialCom.write(message);
                 message = "";
             }
