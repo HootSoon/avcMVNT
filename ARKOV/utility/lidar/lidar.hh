@@ -8,22 +8,22 @@ class LiDARPoint;
 class lidar{
 public:
 
-explicit lidar(std::string port);
-~lidar() {cleanup();}
+    explicit lidar(std::string port);
+    ~lidar() {cleanup();}
 
-unilidar_sdk2::PointCloudUnitree get_pointcloud();
+    unilidar_sdk2::PointCloudUnitree get_pointcloud();
 
-std::vector<LiDARPoint> getLatestScan();
+    std::vector<LiDARPoint> getLatestScan();
 
-void initalize();
+    void initalize();
 
-void cleanup();
+    void cleanup();
 
 
 private:
-std::string p; 
-unilidar_sdk2::UnitreeLidarReader *ld;
-unilidar_sdk2::PointCloudUnitree cloud;
+    std::string p; 
+    unilidar_sdk2::UnitreeLidarReader *ld;
+    unilidar_sdk2::PointCloudUnitree cloud;
 
 };
 
