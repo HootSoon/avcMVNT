@@ -90,7 +90,6 @@ void controller::poll() {
                     break;
             }
         }
-        // probably would like some kind of wait for when there is no event
-        // else the cpu will be in a while loop running as fast as possible
+        usleep(1000);
     }
 }

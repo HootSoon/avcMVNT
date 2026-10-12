@@ -65,7 +65,7 @@ std::optional<std::vector<double>> ik_solver::generate_ik(
         robot_elbow_deg,
         robot_wrist_deg,
         0, // This is wrist roll , need to figure out how to control
-        170 // This is jaw , need to figure out how to control
+        179 // This is jaw , need to figure out how to control
     };
 
     std::copy(result.begin(), result.end(), angles);

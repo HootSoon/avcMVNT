@@ -15,7 +15,7 @@ public:
     double r3 = 7;
 
     double pos[4] = {0.0, 0.0, 0.0, 0.0};
-    double angles[6] = {0.0, 0.0, 90.0, 0.0, 0.0, 170.0};
+    double angles[6] = {0.0, 0.0, 90.0, 0.0, 0.0, 179.0};
 
     std::optional<std::vector<double>> generate_ik(
         double phi, double x, double y, double z);
