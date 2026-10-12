@@ -64,8 +64,8 @@ std::optional<std::vector<double>> ik_solver::generate_ik(
         robot_shoulder_deg,
         robot_elbow_deg,
         robot_wrist_deg,
-        0,
-        10
+        0, // This is wrist roll , need to figure out how to control
+        170 // This is jaw , need to figure out how to control
     };
 
     std::copy(result.begin(), result.end(), angles);
@@ -130,6 +130,7 @@ void ik_solver::wait_for_arrival(
 
 void ik_solver::move_to_xyz(
     double phi, double x, double y, double z,
+    int spd, int acc,
     bool wait)
 {
     if (!arm) {
@@ -138,7 +139,7 @@ void ik_solver::move_to_xyz(
 
     auto target = generate_ik(phi, x, y, z);
 
-    if (target && arm->joints_angle_ctrl(*target, 500, 254)) {
+    if (target && arm->joints_angle_ctrl(*target, spd, acc)) {
         if (wait) {
             wait_for_arrival(*target);
         }
@@ -149,6 +150,7 @@ void ik_solver::draw_line(
     double phi,
     double x1, double y1, double z1,
     double x2, double y2, double z2,
+    int spd, int acc,
     int steps)
 {
     if (!arm || steps <= 0) {
@@ -167,7 +169,7 @@ void ik_solver::draw_line(
         auto target = generate_ik(phi, cx, cy, cz);
 
         if (target) {
-            if (!arm->joints_angle_ctrl(*target, 800, 254)) {
+            if (!arm->joints_angle_ctrl(*target, spd, acc)) {
                 return;
             }
 
