@@ -56,7 +56,7 @@ void controller::poll() {
         if (e.type & JS_EVENT_INIT) {
             continue;
         }
-
+        
         if (e.type == JS_EVENT_AXIS ) {
             switch(e.number){
                 case 0:
@@ -90,5 +90,7 @@ void controller::poll() {
                     break;
             }
         }
+        // probably would like some kind of wait for when there is no event
+        // else the cpu will be in a while loop running as fast as possible
     }
 }
