@@ -116,24 +116,6 @@ controller::controller(std::string port){
             //not sure what the hat values are, testing for that will be done later this week. 
 
             // HR : This might cause the code to crash if JS_EVENT_HAT does not exist
-            if(e.type == JS_EVENT_HAT){
-                switch(e.number){
-                    case 0:
-                        uparrow = e.value;
-                        break;
-                    case 1:
-                        downarrow = e.value;
-                        break;
-                    case 2:
-                        leftarrow = e.value;        
-                        break;
-                    case 3:
-                        rightarrow = e.value;
-                        break;
-                    default:
-                        std::cout << "Other hat button than 0-3" << std::endl;
-                }
-            }
 
             // HR : This needs to be external , not in controller code itself, this ensure modular and safe code, we want pieces to be individuals and instead interface together
 

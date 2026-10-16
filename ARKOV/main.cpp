@@ -25,8 +25,20 @@ int main(){
     //     slamMan.update();
     // }
     // return 0;
+    std::string received;
+
     while(true){
+        leftPID.setPoint(5);
+        rightPID.setPoint(5);
+        
+        received = stm32.read_Serial(0)
+        calcDistanceTraveled();
+
+        leftPID.calculate();
+        rightPID.calculate();
+
         stm32.send_Message("L:50 R:50","non");
+
         sleep(1);
     }
     
