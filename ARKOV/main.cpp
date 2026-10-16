@@ -9,8 +9,8 @@
 #include "encoded/driveOdometry.hh"
 #include <unistd.h>
 
-controller controller("/dev/input/js0");
-microcontroller stm32("/dev/ttyUSB1", 115200);
+//controller controller("/dev/input/js0");
+microcontroller stm32("/dev/ttyACM0", 115200);
 pidController leftPID(0.30, 0.05, 0.10);
 pidController rightPID(0.30, 0.05, 0.10);
 VoxelGrid map(100, 100, 50, 0.1);          
@@ -26,8 +26,8 @@ int main(){
     // }
     // return 0;
     while(true){
-        stm32.send_Message("Test Message","non");
-        sleep(5);
+        stm32.send_Message("L:50 R:50","non");
+        sleep(1);
     }
     
 }
