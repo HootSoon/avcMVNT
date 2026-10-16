@@ -41,7 +41,7 @@ int map[10][10] = {
     {0,0,0,0,0,0,0,0,0,3}
 };
 
-void check_neihbors() {
+void check_neighbors() {
     // check right
     if (curx + 1 <= 9 && map[curx + 1][cury] != 2 && map[curx + 1][cury] != 1 && queued.find(std::make_tuple(curx + 1, cury)) == queued.end()) {
         que.push_back(std::make_tuple(curx + 1, cury));
@@ -86,7 +86,7 @@ int main() {
             map[curx][cury] = 1;
         }
 
-        check_neihbors();
+        check_neighbors();
 
         idx++;
 

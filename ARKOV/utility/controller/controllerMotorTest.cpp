@@ -100,11 +100,18 @@ int main() {
             // Temporary testing serial to send commands to motors
             if(serialCom.isOpen()){
                 std::ostringstream msg;
-                msg << "L" << static_cast<int>((ylaxisVal/32767.0f)*100.0f) << ",R" << static_cast<int>((yraxisVal/32767.0f)*100.0f) << "\n";
-                std::cout << msg.str();
+                msg << "L:" << static_cast<int>((ylaxisVal/32767.0f)*100.0f) << " R:" << static_cast<int>((yraxisVal/32767.0f)*100.0f) << "\n";
+                //std::cout << msg.str();
                 serialCom.write(msg.str());
-                usleep(1000);
+                usleep(500);
             }
+        }
+        if(serialCom.isOpen()){
+                std::ostringstream msg;
+                msg << "L:" << static_cast<int>((ylaxisVal/-32767.0f)*100.0f) << " R:" << static_cast<int>((yraxisVal/32767.0f)*100.0f) << "\n";
+                //std::cout << msg.str();
+                serialCom.write(msg.str());
+                usleep(500);
         }
         usleep(1000);
     }

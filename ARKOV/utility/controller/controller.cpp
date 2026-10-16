@@ -10,6 +10,7 @@ controller::controller(std::string port) {
     this->port = port; //note to self: this->port = port allows use of the same variable name for the class member and constructor parameter.
     fd = -1;
     connected = false;
+    pollCondition = false;
 
     xlaxisVal = 0;
     ylaxisVal = 0;
@@ -49,45 +50,49 @@ void controller::poll() {
     if (!connected || fd < 0) {
         return;
     }
+    pollCondition = true;
 
     js_event e;
 
-    while (read(fd, &e, sizeof(e)) > 0) {
-        if (e.type & JS_EVENT_INIT) {
-            continue;
-        }
-        
-        if (e.type == JS_EVENT_AXIS ) {
-            switch(e.number){
-                case 0:
-                    xlaxisVal = e.value;
-                    break;
-                case 1:
-                    ylaxisVal = e.value;
-                    break;
-                case 2:
-                    xraxisVal = e.value;
-                    break;
-                case 3:
-                    yraxisVal = e.value;
-                    break;
-                default:
-                    std::cout << "Other axis than 0-4" << std::endl;
+    while (pollCondition) {
+        if(read(fd, &e, sizeof(e)) > 0){
+
+            if (e.type & JS_EVENT_INIT) {
+                continue;
             }
             
-        }
-        if (e.type == JS_EVENT_BUTTON ) {
-            switch(e.number){
-                case 0:
-                    if (e.value == 1){
-                        modestate = !modestate;
-                    }
-                    break;
-                case 1:                    
-                    if (e.value == 1){
-                        drivestate = !drivestate;
-                    }
-                    break;
+            if (e.type == JS_EVENT_AXIS ) {
+                switch(e.number){
+                    case 0:
+                        xlaxisVal = e.value;
+                        break;
+                    case 1:
+                        ylaxisVal = e.value;
+                        break;
+                    case 2:
+                        xraxisVal = e.value;
+                        break;
+                    case 3:
+                        yraxisVal = e.value;
+                        break;
+                    default:
+                        std::cout << "Other axis than 0-4" << std::endl;
+                }
+                
+            }
+            if (e.type == JS_EVENT_BUTTON ) {
+                switch(e.number){
+                    case 0:
+                        if (e.value == 1){
+                            modestate = !modestate;
+                        }
+                        break;
+                    case 1:                    
+                        if (e.value == 1){
+                            drivestate = !drivestate;
+                        }
+                        break;
+                }
             }
         }
         usleep(1000);

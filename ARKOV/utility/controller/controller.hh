@@ -18,9 +18,12 @@ public:
 
     bool modestate;
     bool drivestate;
-//  HR : need function definitions in here 
-// ex : bool open();  
-//, same as ur functions in controller.cpp but without the controller:: because were defining it in here under controller already.
+
+    bool pollCondition;
+    
+    bool open();
+    void close();
+    void poll();
 };
 
 
