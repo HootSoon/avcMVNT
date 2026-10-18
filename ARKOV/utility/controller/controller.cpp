@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include <linux/joystick.h>
 #include <iostream>
+#include <thread>
+#include <atomic>
 
 
 controller::controller(std::string port) {
