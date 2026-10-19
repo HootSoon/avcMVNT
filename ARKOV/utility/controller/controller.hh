@@ -2,10 +2,12 @@
 #define CONTROLLER_HH
 
 #include <string>
-
+#include <thread>
+#include <atomic>
 class controller {
 public:
     controller(std::string port = "/dev/input/js0");
+    ~controller();
     std::string port;
     int fd;
     bool connected;
@@ -19,11 +21,15 @@ public:
     bool modestate;
     bool drivestate;
 
-    bool pollCondition;
-    
     bool open();
     void close();
     void poll();
+
+    bool startPolling();
+    void stopPolling();
+private:
+    std::atomic<bool> pollCondition;
+    std::thread pollThread;
 };
 
 

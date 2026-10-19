@@ -42,7 +42,10 @@ bool controller::open() {
 }
 
 void controller::close() {
+    stopPolling();
+    
     if (fd >=0){
+        ::close
         fd = -1;
     }    
     connected = false;
@@ -52,11 +55,10 @@ void controller::poll() {
     if (!connected || fd < 0) {
         return;
     }
-    pollCondition = true;
 
     js_event e;
 
-    while (pollCondition) {
+    while (pollCondition.load()) {
         if(read(fd, &e, sizeof(e)) > 0){
 
             if (e.type & JS_EVENT_INIT) {
@@ -99,4 +101,26 @@ void controller::poll() {
         }
         usleep(1000);
     }
+}
+bool controller::startPolling() {
+    if (!connected || fd < 0 || pollThread.joinable()) {
+        return false;
+    }
+
+    pollCondition.store(true);
+    pollThread = std::thread(&controller::poll, this);
+    return true;
+}
+
+void controller::stopPolling() {
+    pollCondition.store(false);
+
+    if (pollThread.joinable()) {
+        pollThread.join();
+    }
+}
+
+controller::~controller() {
+    stopPolling();
+    close();
 }
