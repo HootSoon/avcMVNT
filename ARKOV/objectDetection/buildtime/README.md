@@ -22,4 +22,4 @@ sudo apt-get update
 sudo apt-get -y install cudnn
 ```
 
-**Testbench Dependencies (x86_64)
+**Testbench Dependencies (x86_64)**
