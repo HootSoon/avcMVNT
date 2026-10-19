@@ -103,9 +103,9 @@ void controller::poll() {
     }
 }
 bool controller::startPolling() {
-    if (!connected || fd < 0 || pollThread.joinable()) { // This condition is a little odd I think: polling is always joinable unless
-        return false;                                    // join has been called already or detatch, so to start polling we actually want it to be joinable, we dont want to return false if its joinable
-    }                                                    // else I think this is good.
+    if (!connected || fd < 0 || pollThread.joinable()) { 
+        return false;                                    
+    }                                                    
 
     pollCondition.store(true);
     pollThread = std::thread(&controller::poll, this);
