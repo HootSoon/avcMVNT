@@ -1,7 +1,6 @@
-**Build Dependencies and Toolchain**
+**Jetson Dependencies (ARM)**
  - CUDA 12.0
  - cudnn 9.0
- - TensorRT 10.13
 
 **CUDA**
 ```
@@ -23,11 +22,4 @@ sudo apt-get update
 sudo apt-get -y install cudnn
 ```
 
-**TensorRT**
-```
-wget https://developer.download.nvidia.com/compute/tensorrt/10.13.0/local_installers/nv-tensorrt-local-repo-ubuntu2004-10.13.0-cuda-11.8_1.0-1_amd64.deb
-sudo dpkg -i nv-tensorrt-local-repo-ubuntu2004-10.13.0-cuda-11.8_1.0-1_amd64.deb
-sudo cp /var/nv-tensorrt-local-repo-ubuntu2004-10.13.0-cuda-11.8/nv-tensorrt-*-keyring.gpg /usr/share/keyrings
-sudo apt-get update
-sudo apt-get -y install tensorrt
-```
+**Testbench Dependencies (x86_64)
