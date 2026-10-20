@@ -1,6 +1,15 @@
-**Jetson Dependencies (ARM)**
+**AI Lab Student Debian 13 Desktop**
+A desktop testbench was provided for development
+
+Enter the ubuntu 20.04 development environment via the terminal command:
+```
+distrobox
+```
+
+**Build Dependencies and Toolchain**
  - CUDA 12.0
  - cudnn 9.0
+ - TensorRT 8.5
 
 **CUDA**
 ```
@@ -21,5 +30,3 @@ sudo cp /var/cudnn-local-tegra-repo-ubuntu2004-9.0.0/cudnn-*-keyring.gpg /usr/sh
 sudo apt-get update
 sudo apt-get -y install cudnn
 ```
-
-**Testbench Dependencies (x86_64)**
