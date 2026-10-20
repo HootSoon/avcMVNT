@@ -1,4 +1,4 @@
-**AI Lab Student Debian 13 Desktop**\
+**AI Lab Student Debian 13 Desktop (x86_64)**\
 A desktop testbench was provided for development
 
 Enter the ubuntu 20.04 development environment via the terminal command:
@@ -6,7 +6,7 @@ Enter the ubuntu 20.04 development environment via the terminal command:
 distrobox
 ```
 
-**Build Dependencies and Toolchain**
+**Build Dependencies and Toolchain (ARM64)**
  - CUDA 12.0
  - cudnn 9.0
  - TensorRT 8.5
