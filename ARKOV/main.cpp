@@ -7,10 +7,11 @@
 #include "utility/cameras/cameras.hh"
 #include "localization/particleFilter.hh"
 #include "encoded/driveOdometry.hh"
-#include "utility/controller/controller.hh"
+//#include "utility/controller/controller.hh"
 #include <unistd.h>
 
-controller controller("/dev/input/js0");
+
+//controller controller("/dev/input/js0");
 microcontroller stm32("/dev/ttyACM0", 115200);
 pidController leftPID(0.30, 0.05, 0.10);
 pidController rightPID(0.30, 0.05, 0.10);
@@ -32,7 +33,7 @@ int main(){
 
     // Just some temporary variables for test
     //----------------------------------------
-    double timeDelay = 1.0;
+    double timeDelay = 0.0125;
 
     std::string received;
 
@@ -40,26 +41,39 @@ int main(){
     int rightCount;
 
     OdometryDelta d;
+
+    float speedL = 0.0f;
+    float speedR = 0.0f;
     //----------------------------------------
 
+    leftPID.setPoint(5);
+    rightPID.setPoint(5);
+
     while(true){
-        leftPID.setPoint(5);
-        rightPID.setPoint(5);
+
         
-        received = stm32.read_Serial(0)
+        received = stm32.read_Serial(0);
         for(int i = 0; i < received.size(); i++){
             if(received.at(i) == ':'){
-                leftCount = received.substr(0,i);
-                rightCount = received.substr(i+1);
+                try{
+                    std::cerr << received << i << std::endl;
+                    leftCount = std::stoi(received.substr(1,i));
+                    rightCount = std::stoi(received.substr(i+1));
+                    
+                }catch (const std::invalid_argument& e){
+                    std::cerr << "Warning:" << std::endl;
+                }
                 break;
             }
         }
-        d = calcDistanceTraveled(leftCount, rightCount);
+        d = driveOdom.calcDistanceTraveled(leftCount, rightCount);
+        
+        speedL = leftPID.calculate(static_cast<float>(d.deltaDist/timeDelay),timeDelay);
+        speedR = rightPID.calculate(static_cast<float>(d.deltaDist/timeDelay),timeDelay);
 
-        leftPID.calculate(d.deltaDist/timeDelay);
-        rightPID.calculate(d.deltaDist/timeDelay);
+        std::cerr << "Distance : " << d.deltaDist << " Angle : " << d.deltaAngle << " Counts : " << leftCount << " , " << rightCount << std::endl;
 
-        stm32.send_Message("L:50 R:50","non");
+        stm32.send_Message("L:" + std::to_string(speedL) + " R:" + std::to_string(speedR),"DMA");
 
         sleep(timeDelay);
     }

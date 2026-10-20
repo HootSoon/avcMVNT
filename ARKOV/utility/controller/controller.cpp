@@ -45,7 +45,7 @@ void controller::close() {
     stopPolling();
     
     if (fd >=0){
-        ::close
+        ::close;
         fd = -1;
     }    
     connected = false;
