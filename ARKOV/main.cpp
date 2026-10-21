@@ -7,11 +7,11 @@
 #include "utility/cameras/cameras.hh"
 #include "localization/particleFilter.hh"
 #include "encoded/driveOdometry.hh"
-//#include "utility/controller/controller.hh"
+#include "utility/controller/controller.hh"
 #include <unistd.h>
 
 
-//controller controller("/dev/input/js0");
+controller controller("/dev/input/js0");
 microcontroller stm32("/dev/ttyACM0", 115200);
 pidController leftPID(0.30, 0.05, 0.10);
 pidController rightPID(0.30, 0.05, 0.10);
@@ -57,7 +57,7 @@ int main(){
         speedL = leftPID.calculate(static_cast<float>(d.deltaDist/timeDelay),timeDelay);
         speedR = rightPID.calculate(static_cast<float>(d.deltaDist/timeDelay),timeDelay);
 
-        std::cerr << "Distance : " << d.deltaDist << " Angle : " << d.deltaAngle << " Counts : " << leftCount << " , " << rightCount << std::endl;
+        std::cerr << "Distance : " << d.deltaDist << " Angle : " << d.deltaAngle << " Counts : " << counts.leftCount << " , " << counts.rightCount << std::endl;
 
         stm32.send_Message("L:" + std::to_string(speedL) + " R:" + std::to_string(speedR),"DMA");
 

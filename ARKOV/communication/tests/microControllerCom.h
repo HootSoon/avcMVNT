@@ -15,7 +15,7 @@ public:
     // Functions
     void send_Message(std::string message, std::string type);
     std::string read_Serial(uint8_t type);
-    Packet parse_Serial(std::string);
+    Packet parse_Serial(std::string received);
 };
 
 #endif

@@ -31,18 +31,20 @@ std::string microcontroller::read_Serial(uint8_t type) {
     return "";
 }
 
-Packet microcontroller::parse_Serial(std::string){
+Packet microcontroller::parse_Serial(std::string received){
+    
     for(int i = 0; i < received.size(); i++){
             if(received.at(i) == ':'){
                 try{
                     //std::cerr << received << i << std::endl;
-                    leftCount = std::stoi(received.substr(1,i));
-                    rightCount = std::stoi(received.substr(i+1));
-                    
+                    Packet p;
+                    p.leftCount = std::stoi(received.substr(1,i));
+                    p.rightCount = std::stoi(received.substr(i+1));
+                    return p;
                 }catch (const std::invalid_argument& e){
                     std::cerr << "ISSUE:" << std::endl;
                 }
-                break;
-            }
+            break;
         }
+    }
 }
