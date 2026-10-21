@@ -7,3 +7,4 @@ SET(SAMPLE_SOURCES
 set(SAMPLE_PARSERS "onnx")
 
 include(../CMakeSamplesTemplate.txt)
+include(../set_ifndev.cmake)
