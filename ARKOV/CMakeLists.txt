@@ -57,7 +57,8 @@ set(SOURCES
     utility/lidar/lidar.cpp
     utility/cameras/cameras.cpp
     localization/particleFilter.cpp
-    encoded/driveOdometry.cpp
+    encoded/driveOdometry.cpp\
+    controller/controller.cpp
 )
 
 # 4. Target executable
