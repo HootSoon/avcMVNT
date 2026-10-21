@@ -3,7 +3,7 @@
 // It is a simple test routine to ensure ARKOV is ready to 
 // begin objectDetection development
 //
-// Refer to https://github.com/NVIDIA/TensorRT/tree/release/8.5/samples/README.md
+// Refer to https://github.com/NVIDIA/TensorRT/blob/release/8.5/samples/sampleOnnxMNIST/README.md
 // for further documentation
 // 
 // Command to invoke test routine:
