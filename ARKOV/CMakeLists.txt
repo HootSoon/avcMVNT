@@ -57,8 +57,8 @@ set(SOURCES
     utility/lidar/lidar.cpp
     utility/cameras/cameras.cpp
     localization/particleFilter.cpp
-    encoded/driveOdometry.cpp\
-    controller/controller.cpp
+    encoded/driveOdometry.cpp
+    utility/controller/controller.cpp
 )
 
 # 4. Target executable
@@ -76,6 +76,7 @@ target_include_directories(arkov_rover PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/utility/cameras
     ${CMAKE_CURRENT_SOURCE_DIR}/localization
     ${CMAKE_CURRENT_SOURCE_DIR}/encoded
+    ${CMAKE_CURRENT_SOURCE_DIR}/controller
     ${unilidar_sdk2_SOURCE_DIR}/unitree_lidar_sdk/include
     ${OpenCV_INCLUDE_DIRS}
 )

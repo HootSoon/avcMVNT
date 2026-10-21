@@ -49,9 +49,9 @@ int main(){
     rightPID.setPoint(5);
 
     while(true){
-        received = stm32.read_Serial(0);
+        
         counts = stm32.parse_Serial(stm32.read_Serial(0));
-
+        
         d = driveOdom.calcDistanceTraveled(counts.leftCount, counts.rightCount);
         
         speedL = leftPID.calculate(static_cast<float>(d.deltaDist/timeDelay),timeDelay);
