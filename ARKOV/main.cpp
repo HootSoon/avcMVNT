@@ -37,8 +37,7 @@ int main(){
 
     std::string received;
 
-    int leftCount;
-    int rightCount;
+    Packet counts;
 
     OdometryDelta d;
 
@@ -50,23 +49,10 @@ int main(){
     rightPID.setPoint(5);
 
     while(true){
-
-        
         received = stm32.read_Serial(0);
-        for(int i = 0; i < received.size(); i++){
-            if(received.at(i) == ':'){
-                try{
-                    std::cerr << received << i << std::endl;
-                    leftCount = std::stoi(received.substr(1,i));
-                    rightCount = std::stoi(received.substr(i+1));
-                    
-                }catch (const std::invalid_argument& e){
-                    std::cerr << "Warning:" << std::endl;
-                }
-                break;
-            }
-        }
-        d = driveOdom.calcDistanceTraveled(leftCount, rightCount);
+        counts = stm32.parse_Serial(stm32.read_Serial(0));
+
+        d = driveOdom.calcDistanceTraveled(counts.leftCount, counts.rightCount);
         
         speedL = leftPID.calculate(static_cast<float>(d.deltaDist/timeDelay),timeDelay);
         speedR = rightPID.calculate(static_cast<float>(d.deltaDist/timeDelay),timeDelay);

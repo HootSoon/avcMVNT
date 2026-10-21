@@ -20,6 +20,10 @@ struct Particle {
     float weight; // Added to fix compile error in particleFilter.cpp
 };
 
+struct Packet{
+    int leftCount, rightCount;
+};
+
 struct LiDARPoint {
     float x, y, z;
     float world_x, world_y, world_z;
