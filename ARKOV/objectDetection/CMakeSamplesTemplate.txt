@@ -15,7 +15,7 @@ set_ifndef(CUDA_INSTALL_DIR /usr/local/cuda)
 
 # SAMPLES_COMMON_SOURCES
 set(SAMPLES_COMMON_SOURCES
-    ${SAMPLES_DIR}/logger.cpp
+    ${SAMPLES_DIR}/common/logger.cpp
 )
 
 # add underscores (snake) to camelCase cases
