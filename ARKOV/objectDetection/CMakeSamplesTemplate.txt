@@ -110,7 +110,7 @@ set_target_properties(${TARGET_NAME}
     RUNTIME_OUTPUT_DIRECTORY "${TRT_OUT_DIR}"
 )
 
-add_dependencies(objectDetection ${TARGET_NAME})
+add_dependencies(buildtime ${TARGET_NAME})
 
 ################################### INSTALLATION ########################################
 
