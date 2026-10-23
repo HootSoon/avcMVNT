@@ -1,109 +1,149 @@
-#include "voxel_map.hh"
 #include "polyscope/polyscope.h"
 #include "polyscope/point_cloud.h"
 #include "unitree_lidar_sdk.h"
+
 #include <vector>
 #include <array>
-#include <random>
 #include <thread>
+#include <mutex>
+#include <atomic>
 #include <chrono>
+#include <cmath>
 #include <iostream>
 
-/*
-    9/11/2026
-    This is just to serve as an example use of the unilidar sdk working in some custom code and 
-    also showing polyscope updating from lidar with the voxel map. This does NOT work great, This
-    will NOT be used on anything more than a test.
+unilidar_sdk2::UnitreeLidarReader* ld = unilidar_sdk2::createUnitreeLidarReader();
+std::atomic<bool> isRunning{true};
+std::thread lidarThread;
+std::mutex dataMutex;
 
-    What to take from this code:
-    - Calling unilidar sdk code to succesfully parse clouds
-    - calling bresenhams 3d line algorithm and interfacing with it
-    - updating a polyscope map every frame with the updateMatrix function
-*/
+std::vector<std::array<float, 3>> latestScanBatch;
+bool hasNewData = false;
 
-unilidar_sdk2::UnitreeLidarReader *ld = unilidar_sdk2::createUnitreeLidarReader();
-VoxelGrid map(100, 100, 100, 0.05);
-unilidar_sdk2::PointCloudUnitree cloud;
+size_t maxAccumulatedPoints = 60000;
+float minDistanceFilter = 0.20f; 
 
-void initialize(){
-    std::cout << "--- HARDWARE DIAGNOSTIC START ---" << std::endl;
-    std::string port = "/dev/ttyACM0"; 
-    
-    // 1. Open the serial port FIRST
-    std::cout << "1. Opening port " << port << "..." << std::endl;
-    int success = ld->initializeSerial(port); 
-    
-    if (success != 0) {
-        std::cerr << "CRITICAL ERROR: Could not connect to LiDAR on " << port << "!" << std::endl;
-        exit(1); 
-    }
-    
-    // 2. Now that the port is open, configure the work mode and start rotation
-    std::cout << "2. Configuring LiDAR to Serial Mode (workMode = 8)..." << std::endl;
-    ld->setLidarWorkMode(8); 
-    ld->startLidarRotation();
-  
-    std::cout << "3. Waiting up to 5 seconds for data stream..." << std::endl;
-    int attempts = 0;
-    
-    while(true) {
-        // Must call runParse() so the SDK reads incoming bytes from the port buffer
+std::vector<std::array<float, 3>> accumulatedPoints;
+std::vector<float> pointHeights;
+
+
+// Lidar worker to process lidar packets on a background thread
+void lidarWorker() {
+    unilidar_sdk2::PointCloudUnitree rawCloud;
+
+    while (isRunning) {
         ld->runParse();
-        ld->getPointCloud(cloud);
-        
-        if (cloud.points.size() > 0) {
-            std::cout << ">>> SUCCESS: Received " << cloud.points.size() << " points!" << std::endl;
-            std::cout << ">>> Launching Polyscope..." << std::endl;
-            break;
-        }
-        
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));
-        attempts++;
-        
-        if (attempts > 100) { 
-            std::cout << "!!! ERROR: Port open, but no point cloud data arrived. Check power/baudrate. !!!" << std::endl;
-            exit(1); 
-        }
-    }
-}
 
-void updateMatrix(){
-    // Crucial: Keep pumping the parser every frame during visualization
-    ld->runParse();
-    ld->getPointCloud(cloud);
-    
-    if (cloud.points.empty()) return; 
-    
-    for (int i = static_cast<int>(cloud.points.size()) - 1; i >= 0; --i) {
-        map.bresenham3D(0, 0, 0, cloud.points[i].x, cloud.points[i].y, cloud.points[i].z);
-    }
+        rawCloud.points.clear();
+        ld->getPointCloud(rawCloud);
 
-    std::vector<std::array<double, 3>> voxelPoints;
-    for (int x = 0; x < map.sizeX; ++x) {
-        for (int y = 0; y < map.sizeY; ++y) {
-            for (int z = 0; z < map.sizeZ; ++z) {
-                if (map.getVoxel(x, y, z) > 0) { 
-                    voxelPoints.push_back({
-                        (x - map.sizeX / 2.0) * map.resolution,
-                        (y - map.sizeY / 2.0) * map.resolution,
-                        (z - map.sizeZ / 2.0) * map.resolution
-                    });
+        if (!rawCloud.points.empty()) {
+            std::vector<std::array<float, 3>> validPoints;
+            validPoints.reserve(rawCloud.points.size());
+
+            for (const auto& pt : rawCloud.points) {
+                // Drop returns within near blindspot (< 20cm)
+                float distSq = pt.x * pt.x + pt.y * pt.y + pt.z * pt.z;
+                if (distSq > (minDistanceFilter * minDistanceFilter) && !std::isnan(pt.x)) {
+                    validPoints.push_back({pt.x, pt.y, pt.z});
                 }
             }
-        }
-    }
 
-    if (!voxelPoints.empty()) {
-        auto* pc = polyscope::registerPointCloud("Voxel Grid Demo", voxelPoints);
-        pc->setPointRenderMode(polyscope::PointRenderMode::Sphere);
-        pc->setPointRadius(map.resolution * 0.25);
+            if (!validPoints.empty()) {
+                std::lock_guard<std::mutex> lock(dataMutex);
+                latestScanBatch = std::move(validPoints);
+                hasNewData = true;
+            }
+        } else {
+            std::this_thread::sleep_for(std::chrono::microseconds(500));
+        }
     }
 }
 
+
+
+void initializeLidar() {
+    std::cout << "--- HARDWARE DIAGNOSTIC START ---" << std::endl;
+    std::string port = "/dev/ttyACM0";
+
+    std::cout << "1. Opening port " << port << std::endl;
+    int success = ld->initializeSerial(port);
+    if (success != 0) {
+        std::cerr << "CRITICAL ERROR: Could not connect to LiDAR on " << port << "!" << std::endl;
+        exit(1);
+    }
+
+    std::cout << "2. Configuring LiDAR to Serial Mode (workMode = 8)..." << std::endl;
+    ld->setLidarWorkMode(8); // Mode 8: serial
+    ld->startLidarRotation();
+
+    std::cout << "3. Launching dedicated I/O thread..." << std::endl;
+    lidarThread = std::thread(lidarWorker);
+
+    // Checks if joinable, keeps checking until true which means side thread has started, then it can continue.
+    int attempts = 0;
+    while (!hasNewData) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+        if (++attempts > 60) {
+            std::cerr << "!!! ERROR: Timeout waiting for initial LiDAR packets. !!!" << std::endl;
+            isRunning = false;
+            if (lidarThread.joinable()) lidarThread.join();
+            exit(1);
+        }
+    }
+    std::cout << ">>> SUCCESS: LiDAR stream active!" << std::endl;
+}
+
+
+
+void renderCallback() {
+    bool updated = false;
+
+    {
+        std::lock_guard<std::mutex> lock(dataMutex);
+        if (hasNewData) {
+            accumulatedPoints.insert(accumulatedPoints.end(), 
+                                     latestScanBatch.begin(), 
+                                     latestScanBatch.end());
+            hasNewData = false;
+            updated = true;
+        }
+    }
+
+    if (updated) {
+        // Trim rolling buffer
+        if (accumulatedPoints.size() > maxAccumulatedPoints) {
+            size_t excess = accumulatedPoints.size() - maxAccumulatedPoints;
+            accumulatedPoints.erase(accumulatedPoints.begin(), accumulatedPoints.begin() + excess);
+        }
+
+        pointHeights.resize(accumulatedPoints.size());
+        for (size_t i = 0; i < accumulatedPoints.size(); ++i) {
+            pointHeights[i] = accumulatedPoints[i][2];
+        }
+
+        auto* pc = polyscope::registerPointCloud("Accumulated LiDAR Scan", accumulatedPoints);
+        pc->setPointRadius(0.006);
+        pc->setPointRenderMode(polyscope::PointRenderMode::Sphere);
+
+        auto* scalarQ = pc->addScalarQuantity("Elevation (Z)", pointHeights);
+        scalarQ->setColorMap("turbo");
+        scalarQ->setEnabled(true);
+    }
+}
+
+
+
 int main() {
-    initialize();
+    initializeLidar();
+
     polyscope::init();
-    polyscope::state::userCallback = updateMatrix;
+    polyscope::state::userCallback = renderCallback;
     polyscope::show();
+
+    isRunning = false;
+    if (lidarThread.joinable()) {
+        lidarThread.join();
+    }
+
     return 0;
 }

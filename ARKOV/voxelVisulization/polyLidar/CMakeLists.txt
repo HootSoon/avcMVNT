@@ -28,7 +28,6 @@ endif()
 # 3. Add executable
 add_executable(polyscope_lidar 
     polyscope_lidar_test.cpp 
-    voxel_map.cpp
 )
 
 # 4. Include the exact folder where unitree_lidar_sdk.h lives
