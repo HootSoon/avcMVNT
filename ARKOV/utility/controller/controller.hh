@@ -18,12 +18,15 @@ public:
     bool modestate;
     bool drivestate;
 
+
     bool open();
     void close();
     void poll();
 
     bool startPolling();
     void stopPolling();
+
+    ThreadSafeArray values;
 private:
     std::atomic<bool> pollCondition;
     std::thread pollThread;

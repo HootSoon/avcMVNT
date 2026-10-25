@@ -14,14 +14,9 @@ controller::controller(std::string port) {
     connected = false;
     pollCondition = false;
 
-    xlaxisVal = 0;
-    ylaxisVal = 0;
-
-    xraxisVal = 0;
-    yraxisVal = 0;
-
     modestate = false;
     drivestate = false;
+
 }
 
 bool controller::open() {
@@ -65,23 +60,24 @@ void controller::poll() {
             }
             
             if (e.type == JS_EVENT_AXIS ) {
+                // Switch statement could actually be replaced, using just e.number directly to set index
                 switch(e.number){
                     case 0:
-                        xlaxisVal = e.value;
+                        values.setIndex(0,e.value);
                         break;
                     case 1:
-                        ylaxisVal = e.value;
+                        values.setIndex(1,e.value);
                         break;
                     case 2:
-                        xraxisVal = e.value;
+                        values.setIndex(2,e.value);
                         break;
                     case 3:
-                        yraxisVal = e.value;
+                        values.setIndex(3,e.value);
                         break;
                     default:
                         std::cout << "Other axis than 0-4" << std::endl;
                 }
-                
+
             }
             if (e.type == JS_EVENT_BUTTON ) {
                 switch(e.number){
