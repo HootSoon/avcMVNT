@@ -4,6 +4,9 @@
 #include <string>
 #include <thread>
 #include <atomic>
+#include <mutex>
+#include <array>
+
 class controller {
 public:
     controller(std::string port = "/dev/input/js0");
@@ -11,12 +14,6 @@ public:
     std::string port;
     int fd;
     bool connected;
-
-    short xlaxisVal;
-    short ylaxisVal;
-
-    short xraxisVal;
-    short yraxisVal;
 
     bool modestate;
     bool drivestate;
@@ -31,6 +28,23 @@ private:
     std::atomic<bool> pollCondition;
     std::thread pollThread;
 };
+
+class ThreadSafeArray{
+    
+    public:
+    static constexpr int SIZE = 4;
+
+    void setIndex(int index, short& value);
+    void setAll(std::array<short,SIZE>& values);
+
+    short getIndex(int index) const;
+    std::array<short,SIZE> getAll() const;
+
+    private:
+    std::array<short,SIZE> stickValues;
+    mutable std::mutex mtx;
+
+}
 
 
 #endif

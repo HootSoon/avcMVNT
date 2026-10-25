@@ -124,3 +124,27 @@ controller::~controller() {
     stopPolling();
     close(); 
 }
+
+
+// ThreadSafe Variable Definitions
+
+
+short ThreadSafeArray::getIndex(int index) const{
+    std::lock_guard<std::mutex> lock(mtx);
+    return stickValues.at(index);
+}
+
+std::array<short,ThreadSafeArray::SIZE> ThreadSafeArray::getAll() const{
+    std::lock_guard<std::mutex> lock(mtx);
+    return stickValues;
+}
+
+void ThreadSafeArray::setIndex(int index, short& value){
+    std::lock_guard<std::mutex> lock(mtx);
+    stickValues.at(index) = value;
+}
+
+void ThreadSafeArray::setAll(std::array<short,SIZE>& values){
+    std::lock_guard<std::mutex> lock(mtx);
+    stickValues = values;
+}
