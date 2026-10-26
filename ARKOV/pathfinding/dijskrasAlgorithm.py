@@ -42,7 +42,7 @@ class graph:
 
 def make_obstacles(map):
     map[0][0] = 1 # place start
-    map[9][9] = 3 # place end
+    map[9] [9] = 3 # place end
 
     map[4][0] = 2 # obstacles 
     map[4][1] = 2
