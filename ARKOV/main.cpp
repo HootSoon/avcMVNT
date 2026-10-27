@@ -12,7 +12,7 @@
 
 
 controller controller("/dev/input/js0");
-//microcontroller stm32("/dev/ttyACM0", 115200);
+microcontroller stm32("/dev/ttyACM0", 115200);
 pidController leftPID(0.30, 0.05, 0.10);
 pidController rightPID(0.30, 0.05, 0.10);
 VoxelGrid map(100, 100, 50, 0.1);          
@@ -42,36 +42,32 @@ int main(){
 
     OdometryDelta d;
 
-    // float speedL = 0.0f;
-    // float speedR = 0.0f;
+    float speedL = 0.0f;
+    float speedR = 0.0f;
     //----------------------------------------
 
-    // leftPID.setPoint(5);
-    // rightPID.setPoint(5);
+    leftPID.setPoint(5);
+    rightPID.setPoint(5);
 
-    // while(true){
-        
-    //     counts = stm32.parse_Serial(stm32.read_Serial(0));
-        
-    //     d = driveOdom.calcDistanceTraveled(counts.leftCount, counts.rightCount);
-        
-    //     speedL = leftPID.calculate(static_cast<float>(d.deltaDist/timeDelay),timeDelay);
-    //     speedR = rightPID.calculate(static_cast<float>(d.deltaDist/timeDelay),timeDelay);
-
-    //     std::cerr << "Distance : " << d.deltaDist << " Angle : " << d.deltaAngle << " Counts : " << counts.leftCount << " , " << counts.rightCount << std::endl;
-
-    //     stm32.send_Message("L:" + std::to_string(speedL) + " R:" + std::to_string(speedR),"DMA");
-
-    //     sleep(timeDelay);
-    // }
-    
     controller.open();
-    if(controller.startPolling()){
+    controller.startPolling();
 
-        while(true){
-            usleep(10000);
-            std::cerr << " J 1 x: " << controller.values.getIndex(0) << " J 1 y: " << controller.values.getIndex(1) << " J 2 x: " << controller.values.getIndex(2) << " J 2 y: " << controller.values.getIndex(3)<< std::endl;
-        }
+    while(true){
+        
+        counts = stm32.parse_Serial(stm32.read_Serial(0));
+        
+        d = driveOdom.calcDistanceTraveled(counts.leftCount, counts.rightCount);
+        
+        speedL = leftPID.calculate(static_cast<float>(d.deltaDist/timeDelay),timeDelay);
+        speedR = rightPID.calculate(static_cast<float>(d.deltaDist/timeDelay),timeDelay);
+
+        std::cerr << "Distance : " << d.deltaDist << " Angle : " << d.deltaAngle << " Counts : " << counts.leftCount << " , " << counts.rightCount << " Controller : " << (controller.values.getIndex(1)/32767.0f * 100) << " : " << (controller.values.getIndex(3)/32767.0f * 100) << std::endl;
+
+        stm32.send_Message("L:" + std::to_string(static_cast<int>(controller.values.getIndex(1)/32767.0f * -100)) + " R:" + std::to_string(static_cast<int>(controller.values.getIndex(3)/32767.0f * 100)),"NON");
+
+        sleep(timeDelay);
     }
+    
+    
 }
 
