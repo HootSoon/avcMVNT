@@ -106,7 +106,7 @@ docker ps
 
  The output of the above command should show something similar to the output below, note the `NAMES` section of the docker container. In this example, the randomly generated name is `recursing_montalcini`
 
-![image6](png/imgae6.png)
+![image6](png/image6.png)
 
  - We'll quickly enter the container to ensure everything is in order
 
