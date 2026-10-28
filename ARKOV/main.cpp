@@ -56,7 +56,7 @@ int main(){
         
         counts = stm32.parse_Serial(stm32.read_Serial(0));
         
-        d = driveOdom.calcDistanceTraveled(counts.leftCount, counts.rightCount);
+        d = driveOdom.calcDistanceTraveled(counts.leftCount, counts.rightCount, timeDelay);
         
         speedL = leftPID.calculate(static_cast<float>(d.deltaDist/timeDelay),timeDelay);
         speedR = rightPID.calculate(static_cast<float>(d.deltaDist/timeDelay),timeDelay);

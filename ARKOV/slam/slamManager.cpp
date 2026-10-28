@@ -30,9 +30,9 @@ void slamManager::startUp() {
 }
 
 void slamManager::update() {
-    float dist = 0.0, dtheta = 0.0;
+    float dist = 0.0, dtheta = 0.0, deltaT = 1;
     // I input 0 for encoders for now
-    driveOdom->calcDistanceTraveled(0,0);
+    driveOdom->calcDistanceTraveled(0,0,1);
     heading += dtheta;
 
     float dx = std::cos((3.14159/180)*heading);
