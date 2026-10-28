@@ -2,7 +2,7 @@
 #include <cmath>
 
 /*! \addtogroup MOVEMENT */
-OdometryDelta driveOdometry::calcDistanceTraveled(int curTicsL , int curTicsR){
+OdometryDelta driveOdometry::calcDistanceTraveled(int curTicsL , int curTicsR, float deltaTime){
     lDist = (CIRCUMFERENCE * static_cast<float>(curTicsL - lastTicsL)) / TICKS_PER_REVOLUTION;
     rDist = (CIRCUMFERENCE * static_cast<float>(curTicsR - lastTicsR)) / TICKS_PER_REVOLUTION;
     
@@ -12,5 +12,8 @@ OdometryDelta driveOdometry::calcDistanceTraveled(int curTicsL , int curTicsR){
     lastTicsL = curTicsL;
     lastTicsR = curTicsR;
     
-    return OdometryDelta{deltaDist, deltaAngle};
+    totalDistanceTraveled += deltaDist;
+    velocity = deltaDist/deltaTime;
+
+    return OdometryDelta{deltaDist, deltaAngle, totalDistanceTravelled, velocity};
 }

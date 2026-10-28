@@ -19,9 +19,12 @@ private:
     float rDist,lDist;
     float deltaDist;
     float deltaAngle;
+
+    float totalDistanceTraveled;
+    float velocity;
 public:
     driveOdometry() = default; // makes compiler default constructor
-    OdometryDelta calcDistanceTraveled(int curTicsL , int curTicsR);
+    OdometryDelta calcDistanceTraveled(int curTicsL , int curTicsR, float deltaTime);
     
 };
 //! @}

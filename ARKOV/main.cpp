@@ -61,7 +61,7 @@ int main(){
         speedL = leftPID.calculate(static_cast<float>(d.deltaDist/timeDelay),timeDelay);
         speedR = rightPID.calculate(static_cast<float>(d.deltaDist/timeDelay),timeDelay);
 
-        std::cerr << "Distance : " << d.deltaDist << " Angle : " << d.deltaAngle << " Counts : " << counts.leftCount << " , " << counts.rightCount << " Controller : " << (controller.values.getIndex(1)/32767.0f * 100) << " : " << (controller.values.getIndex(3)/32767.0f * 100) << std::endl;
+        std::cerr << "Distance : " << d.totalDistance << " Angle : " << d.deltaAngle << " Counts : " << counts.leftCount << " , " << counts.rightCount << " Controller : " << (controller.values.getIndex(1)/32767.0f * 100) << " : " << (controller.values.getIndex(3)/32767.0f * 100) << std::endl;
 
         stm32.send_Message("L:" + std::to_string(static_cast<int>(controller.values.getIndex(1)/32767.0f * -100)) + " R:" + std::to_string(static_cast<int>(controller.values.getIndex(3)/32767.0f * 100)),"NON");
 
