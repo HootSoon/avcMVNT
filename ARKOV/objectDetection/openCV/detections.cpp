@@ -39,7 +39,7 @@ int main(){
         double fps = elapsed.count() > 0 ? frameCount / static_cast<double>(elapsed.count()) : 0;
 
         std::string info = "FPS: " + std::to_string(static_cast<int>(fps)) +
-                           "Objects: " + std::to_string(detections.size());
+                           "Objects: " + std::to_string(detections.size()) +
                            "Time: " + std::to_string(detectDuration.count());
 
         cv::putText(frame, info);
