@@ -12,7 +12,7 @@ int main(){
     cv_Webcam cam(0);
     cv::Mat frame;
     
-    std::string modelPath = "/home/uafs/path/to/yolo26.onnx";
+    std::string modelPath = "/home/uafs/Documents/YOLOs-CPP/models/yolo26n-depth.onnx";
     std::string labelsPath = "/home/uafs/path/to/labels.names";
 
     bool useGPU = true;
