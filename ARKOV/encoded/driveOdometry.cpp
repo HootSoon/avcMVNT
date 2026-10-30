@@ -13,7 +13,8 @@ OdometryDelta driveOdometry::calcDistanceTraveled(int curTicsL , int curTicsR, f
     lastTicsR = curTicsR;
     
     totalDistanceTraveled += deltaDist;
-    velocity = deltaDist/deltaTime;
+    leftVelocity = lDist/deltaTime;
+    rightVelocity = rDist/deltaTime;
 
-    return OdometryDelta{deltaDist, deltaAngle, totalDistanceTraveled, velocity};
+    return OdometryDelta{deltaDist, deltaAngle, totalDistanceTraveled, leftVelocity, rightVelocity};
 }

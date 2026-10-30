@@ -6,7 +6,8 @@ struct OdometryDelta{
     double deltaDist;
     double deltaAngle;
     double totalDistance;
-    double velocity;
+    double leftVelocity;
+    double rightVelocity;
 };
 
 struct Point {
