@@ -1,8 +1,10 @@
+set(ONNXRUNTIME_DIR "/home/uafs/Downloads/onnxruntime-linux-aarch64-1.31.1" 
+	CACHE PATH "Path to ONNX Runtime installation")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
 cmake_minimum_required(VERSION 3.16)
+
 include(FetchContent)
 
 # 1. Locate system packages
@@ -37,6 +39,7 @@ add_executable(detections
     detections.cpp
     ../../utility/cameras/cameras.cpp
 )
+
 
 # 4. Include headers
 target_include_directories(detections PRIVATE 
