@@ -1,10 +1,7 @@
 #include <iostream>
 #include <chrono>
-#include <onnxruntime_cxx_api.h>
-
 
 #include "cameras.hh"
-#include "cameras.cpp" // Need to implement this correctly later
 
 #include "yolos/yolos.hpp"
 

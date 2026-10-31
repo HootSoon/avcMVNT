@@ -7,40 +7,43 @@ include(FetchContent)
 
 # 1. Locate system packages
 find_package(OpenCV REQUIRED)
+find_package(onnxruntime REQUIRED)
 
-# 2. Build executable
-add_executable(detections 
-    detections.cpp
-)
-
-# 3. Fetch github repos
+# 2. Fetch github repos
 FetchContent_Declare(
     yolos_cpp
     GIT_REPOSITORY https://github.com/Geekgineer/YOLOs-CPP.git
     GIT_TAG main
 )
+
 FetchContent_Declare(
-    onnxruntime
+    onnxruntime_api
     GIT_REPOSITORY https://github.com/microsoft/onnxruntime.git
     GIT_TAG main
-
 )
 
 FetchContent_GetProperties(yolos_cpp)
 if(NOT yolos_cpp_POPULATED)
-    FetchContent_Populate(yolos_cpp)
+    FetchContent_MakeAvailable(yolos_cpp)
 endif()
 
-FetchContent_GetProperties(onnxruntime)
-if(NOT onnxruntime_POPULATED)
-    FetchContent_Populate(onnxruntime)
+FetchContent_GetProperties(onnxruntime_api)
+if(NOT onnxruntime_api_POPULATED)
+    FetchContent_MakeAvailable(onnxruntime_api)
 endif()
+
+# 3. Build executable
+add_executable(detections 
+    detections.cpp
+    ../../utility/cameras/cameras.cpp
+)
 
 # 4. Include headers
 target_include_directories(detections PRIVATE 
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${OpenCV_INCLUDE_DIRS}
-    ${onnxruntime_SOURCE_DIR}/include/onnxruntime/core/session
+    ${onnxruntime_INCLUDE_DIRS}/onnxruntime/include
+    ${onnxruntime_api_SOURCE_DIR}/include/onnxruntime/core/session
     ${yolos_cpp_SOURCE_DIR}/include
     ../../utility/cameras
 )
@@ -48,4 +51,5 @@ target_include_directories(detections PRIVATE
 # 5. Link libraries
 target_link_libraries(detections PRIVATE 
     ${OpenCV_LIBS}
+    ${onnxruntime_LIBRARY}
 )
