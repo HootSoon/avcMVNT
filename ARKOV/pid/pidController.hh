@@ -9,7 +9,7 @@ private:
 
     float error = 0.0f;
     float setpoint = 0.0f;
-    float prevError = 0.0f;
+    float prevValue = 0.0f;
 
     float integral = 0.0f;
     float deriv = 0.0f;
@@ -21,5 +21,6 @@ public:
     pidController(float p, float i, float d);
     float calculate(float value, float deltaT);
     void setPoint(float newSetPoint);
+    void reset();
 
 };
