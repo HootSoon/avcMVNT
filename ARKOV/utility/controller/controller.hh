@@ -7,7 +7,7 @@
 #include <mutex>
 #include <array>
 
-class ThreadSafeArray{
+class ThreadSafeShortArray{
     
     public:
     static constexpr int SIZE = 4;
@@ -20,6 +20,23 @@ class ThreadSafeArray{
 
     private:
     std::array<short,SIZE> stickValues;
+    mutable std::mutex mtx;
+
+};
+
+class ThreadSafeBoolArray{
+    
+    public:
+    static constexpr int SIZE = 4;
+
+    void setIndex(int index, bool& value);
+    void setAll(std::array<bool,SIZE>& values);
+
+    bool getIndex(int index) const;
+    std::array<bool,SIZE> getAll() const;
+
+    private:
+    std::array<bool,SIZE> buttonValues;
     mutable std::mutex mtx;
 
 };
@@ -44,7 +61,8 @@ public:
     bool startPolling();
     void stopPolling();
 
-    ThreadSafeArray values;
+    ThreadSafeShortArray stickValues;
+    ThreadSafeBoolArray buttonValues;
 private:
     std::atomic<bool> pollCondition;
     std::thread pollThread;

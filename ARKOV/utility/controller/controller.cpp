@@ -7,6 +7,11 @@
 #include <thread>
 #include <atomic>
 
+// 11/1/2026
+/*
+    1. Creation of ThreadSafeBoolArray to store button values  
+*/
+
 
 controller::controller(std::string port) {
     this->port = port; //note to self: this->port = port allows use of the same variable name for the class member and constructor parameter.
@@ -63,16 +68,16 @@ void controller::poll() {
                 // Switch statement could actually be replaced, using just e.number directly to set index
                 switch(e.number){
                     case 0:
-                        values.setIndex(0,e.value);
+                        stickValues.setIndex(0,e.value);
                         break;
                     case 1:
-                        values.setIndex(1,e.value);
+                        stickValues.setIndex(1,e.value);
                         break;
                     case 2:
-                        values.setIndex(2,e.value);
+                        stickValues.setIndex(2,e.value);
                         break;
                     case 3:
-                        values.setIndex(3,e.value);
+                        stickValues.setIndex(3,e.value);
                         break;
                     default:
                         std::cout << "Other axis than 0-4" << std::endl;
@@ -84,11 +89,13 @@ void controller::poll() {
                     case 0:
                         if (e.value == 1){
                             modestate = !modestate;
+                            buttonValues.setIndex(0) = modestate;
                         }
                         break;
                     case 1:                    
                         if (e.value == 1){
                             drivestate = !drivestate;
+                            buttonValues.setIndex(1) = drivestate;
                         }
                         break;
                 }
@@ -122,25 +129,47 @@ controller::~controller() {
 }
 
 
-// ThreadSafe Variable Definitions
+// ThreadSafe Short Array Variable Definitions
 
 
-short ThreadSafeArray::getIndex(int index) const{
+short ThreadSafeShortArray::getIndex(int index) const{
     std::lock_guard<std::mutex> lock(mtx);
     return stickValues.at(index);
 }
 
-std::array<short,ThreadSafeArray::SIZE> ThreadSafeArray::getAll() const{
+std::array<short,ThreadSafeShortArray::SIZE> ThreadSafeArray::getAll() const{
     std::lock_guard<std::mutex> lock(mtx);
     return stickValues;
 }
 
-void ThreadSafeArray::setIndex(int index, short& value){
+void ThreadSafeShortArray::setIndex(int index, short& value){
     std::lock_guard<std::mutex> lock(mtx);
     stickValues.at(index) = value;
 }
 
-void ThreadSafeArray::setAll(std::array<short,SIZE>& values){
+void ThreadSafeShortArray::setAll(std::array<short,SIZE>& values){
     std::lock_guard<std::mutex> lock(mtx);
     stickValues = values;
+}
+
+// ThreadSafe Bool Array Variable Definitions
+
+bool ThreadSafeBoolArray::getIndex(int index) const{
+    std::lock_guard<std::mutex> lock(mtx);
+    return buttonValues.at(index);
+}
+
+std::array<bool,ThreadSafeBoolArray::SIZE> ThreadSafeBoolArray::getAll() const{
+    std::lock_guard<std::mutex> lock(mtx);
+    return buttonValues;
+}
+
+void ThreadSafeBoolArray::setIndex(int index, bool& value){
+    std::lock_guard<std::mutex> lock(mtx);
+    buttonValues.at(index) = value;
+}
+
+void ThreadSafeBoolArray::setAll(std::array<bool,SIZE>& values){
+    std::lock_guard<std::mutex> lock(mtx);
+    buttonValues = values;
 }
