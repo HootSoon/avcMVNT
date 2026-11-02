@@ -4,12 +4,13 @@
 #include "encoded/driveOdometry.hh"
 #include "utility/controller/controller.hh"
 #include <unistd.h>
+#include <iostream>
 
 
 controller controller("/dev/input/js0");
 microcontroller stm32("/dev/ttyACM0", 115200);
-pidController leftPID(40.0, 0.1, 0.01);
-pidController rightPID(40.0, 0.1, 0.01);
+pidController leftPID(40.0, 0.3, 0.1);
+pidController rightPID(40.0, 0.3, 0.1);
 driveOdometry driveOdom;
 // slamManager slamMan(&pf, &driveOdom, &map, &ld);
 
@@ -33,8 +34,8 @@ int main(){
     controller.startPolling();
 
     while(true){
-        pidSetL += controller.values.getIndex(1)/32767.0f;
-        pidSetR += controller.values.getIndex(3)/32767.0f;
+        pidSetL += controller.stickValues.getIndex(1)/32767.0f;
+        pidSetR += controller.stickValues.getIndex(3)/32767.0f;
 
         // SET TARGET VELOCITY for pid algorithm
         leftPID.setPoint(pidSetL);
@@ -48,7 +49,7 @@ int main(){
         speedL = leftPID.calculate(static_cast<float>(d.leftVelocity),timeDelay);
         speedR = rightPID.calculate(static_cast<float>(d.rightVelocity),timeDelay) * -1;
 
-        std::cerr << "PID : " << pidSetL << " , " << pidSetR << " Velocity : " << (d.leftVelocity + d.rightVelocity)/2.0f << " Counts : " << counts.leftCount << " , " << counts.rightCount << " Controller : " << speedL << " : " << speedR << std::endl;
+        std::cout << "PID : " << pidSetL << " , " << pidSetR << " Velocity : " << (d.leftVelocity + d.rightVelocity)/2.0f << " Counts : " << counts.leftCount << " , " << counts.rightCount << " Controller : " << speedL << " : " << speedR << std::endl;
 
         //stm32.send_Message("L:" + std::to_string(static_cast<int>(controller.values.getIndex(1)/32767.0f * -100)) + " R:" + std::to_string(static_cast<int>(controller.values.getIndex(3)/32767.0f * 100)),"NON");
         stm32.send_Message("L:" + std::to_string(static_cast<int>(speedL)) + " R:" + std::to_string(static_cast<int>(speedR)),"NON");

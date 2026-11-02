@@ -89,13 +89,13 @@ void controller::poll() {
                     case 0:
                         if (e.value == 1){
                             modestate = !modestate;
-                            buttonValues.setIndex(0) = modestate;
+                            buttonValues.setIndex(0,modestate);
                         }
                         break;
                     case 1:                    
                         if (e.value == 1){
                             drivestate = !drivestate;
-                            buttonValues.setIndex(1) = drivestate;
+                            buttonValues.setIndex(1,drivestate);
                         }
                         break;
                 }
@@ -137,7 +137,7 @@ short ThreadSafeShortArray::getIndex(int index) const{
     return stickValues.at(index);
 }
 
-std::array<short,ThreadSafeShortArray::SIZE> ThreadSafeArray::getAll() const{
+std::array<short,ThreadSafeShortArray::SIZE> ThreadSafeShortArray::getAll() const{
     std::lock_guard<std::mutex> lock(mtx);
     return stickValues;
 }
