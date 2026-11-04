@@ -1,0 +1,62 @@
+[
+{
+  "directory": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build",
+  "command": "/usr/bin/c++   -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx -I/usr/local/include/onnxruntime/include/onnxruntime/include -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/onnxruntime_api-src/include/onnxruntime/core/session -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/include -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/../../utility/cameras -isystem /usr/include/opencv4    -std=gnu++17 -o CMakeFiles/detections.dir/detections.cpp.o -c /home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/detections.cpp",
+  "file": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/detections.cpp"
+},
+{
+  "directory": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build",
+  "command": "/usr/bin/c++   -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx -I/usr/local/include/onnxruntime/include/onnxruntime/include -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/onnxruntime_api-src/include/onnxruntime/core/session -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/include -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/../../utility/cameras -isystem /usr/include/opencv4    -std=gnu++17 -o CMakeFiles/detections.dir/home/uafs/Documents/codebase/avcMVNT/ARKOV/utility/cameras/cameras.cpp.o -c /home/uafs/Documents/codebase/avcMVNT/ARKOV/utility/cameras/cameras.cpp",
+  "file": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/utility/cameras/cameras.cpp"
+},
+{
+  "directory": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build",
+  "command": "/usr/bin/c++   -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/include -I/home/uafs/Downloads/onnxruntime-linux-aarch64-1.31.1/include -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/include -isystem /usr/include/opencv4    -Wall -Wextra -Wpedantic -pthread -std=c++17 -o CMakeFiles/image_depth_inference.dir/src/image_depth_inference.cpp.o -c /home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/image_depth_inference.cpp",
+  "file": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/image_depth_inference.cpp"
+},
+{
+  "directory": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build",
+  "command": "/usr/bin/c++   -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/include -I/home/uafs/Downloads/onnxruntime-linux-aarch64-1.31.1/include -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/include -isystem /usr/include/opencv4    -Wall -Wextra -Wpedantic -pthread -std=c++17 -o CMakeFiles/batch_image_inference.dir/src/batch_image_inference.cpp.o -c /home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/batch_image_inference.cpp",
+  "file": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/batch_image_inference.cpp"
+},
+{
+  "directory": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build",
+  "command": "/usr/bin/c++   -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/include -I/home/uafs/Downloads/onnxruntime-linux-aarch64-1.31.1/include -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/include -isystem /usr/include/opencv4    -Wall -Wextra -Wpedantic -pthread -std=c++17 -o CMakeFiles/class_image_inference.dir/src/class_image_inference.cpp.o -c /home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/class_image_inference.cpp",
+  "file": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/class_image_inference.cpp"
+},
+{
+  "directory": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build",
+  "command": "/usr/bin/c++   -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/include -I/home/uafs/Downloads/onnxruntime-linux-aarch64-1.31.1/include -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/include -isystem /usr/include/opencv4    -Wall -Wextra -Wpedantic -pthread -std=c++17 -o CMakeFiles/image_yoloe_seg.dir/src/image_yoloe_seg.cpp.o -c /home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/image_yoloe_seg.cpp",
+  "file": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/image_yoloe_seg.cpp"
+},
+{
+  "directory": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build",
+  "command": "/usr/bin/c++   -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/include -I/home/uafs/Downloads/onnxruntime-linux-aarch64-1.31.1/include -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/include -isystem /usr/include/opencv4    -Wall -Wextra -Wpedantic -pthread -std=c++17 -o CMakeFiles/video_yoloe_seg.dir/src/video_yoloe_seg.cpp.o -c /home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/video_yoloe_seg.cpp",
+  "file": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/video_yoloe_seg.cpp"
+},
+{
+  "directory": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build",
+  "command": "/usr/bin/c++   -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/include -I/home/uafs/Downloads/onnxruntime-linux-aarch64-1.31.1/include -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/include -isystem /usr/include/opencv4    -Wall -Wextra -Wpedantic -pthread -std=c++17 -o CMakeFiles/video_yolo26_seg_pose.dir/src/video_yolo26_seg_pose.cpp.o -c /home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/video_yolo26_seg_pose.cpp",
+  "file": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/video_yolo26_seg_pose.cpp"
+},
+{
+  "directory": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build",
+  "command": "/usr/bin/c++   -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/include -I/home/uafs/Downloads/onnxruntime-linux-aarch64-1.31.1/include -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/include -isystem /usr/include/opencv4    -Wall -Wextra -Wpedantic -pthread -std=c++17 -o CMakeFiles/video_yolo26_all_tasks.dir/src/video_yolo26_all_tasks.cpp.o -c /home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/video_yolo26_all_tasks.cpp",
+  "file": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/video_yolo26_all_tasks.cpp"
+},
+{
+  "directory": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build",
+  "command": "/usr/bin/c++   -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/include -I/home/uafs/Downloads/onnxruntime-linux-aarch64-1.31.1/include -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/include -isystem /usr/include/opencv4    -Wall -Wextra -Wpedantic -pthread -std=c++17 -o CMakeFiles/video_inference.dir/src/video_inference.cpp.o -c /home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/video_inference.cpp",
+  "file": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/video_inference.cpp"
+},
+{
+  "directory": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build",
+  "command": "/usr/bin/c++   -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/include -I/home/uafs/Downloads/onnxruntime-linux-aarch64-1.31.1/include -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/include -isystem /usr/include/opencv4    -Wall -Wextra -Wpedantic -pthread -std=c++17 -o CMakeFiles/camera_inference.dir/src/camera_inference.cpp.o -c /home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/camera_inference.cpp",
+  "file": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/camera_inference.cpp"
+},
+{
+  "directory": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build",
+  "command": "/usr/bin/c++   -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/include -I/home/uafs/Downloads/onnxruntime-linux-aarch64-1.31.1/include -I/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/include -isystem /usr/include/opencv4    -Wall -Wextra -Wpedantic -pthread -std=c++17 -o CMakeFiles/image_inference.dir/src/image_inference.cpp.o -c /home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/image_inference.cpp",
+  "file": "/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-src/src/image_inference.cpp"
+}
+]

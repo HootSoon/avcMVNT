@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/pid/pidController.cpp
+pidController.hh
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/pid/pidController.hh
+algorithm
+-
+
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/pid/pidController.hh
+

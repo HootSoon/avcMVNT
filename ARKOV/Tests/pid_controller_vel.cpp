@@ -9,8 +9,8 @@
 
 controller controller("/dev/input/js0");
 microcontroller stm32("/dev/ttyACM0", 115200);
-pidController leftPID(40.0, 0.3, 0.1);
-pidController rightPID(40.0, 0.3, 0.1);
+pidController leftPID(40.0, 1.0, 0.1);
+pidController rightPID(40.0, 1.0, 0.1);
 driveOdometry driveOdom;
 // slamManager slamMan(&pf, &driveOdom, &map, &ld);
 

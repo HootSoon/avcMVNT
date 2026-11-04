@@ -1,0 +1,15 @@
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/CMakeFiles/rebuild_cache.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/CMakeFiles/edit_cache.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/CMakeFiles/detections.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build/CMakeFiles/image_depth_inference.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build/CMakeFiles/batch_image_inference.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build/CMakeFiles/rebuild_cache.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build/CMakeFiles/class_image_inference.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build/CMakeFiles/image_yoloe_seg.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build/CMakeFiles/video_yoloe_seg.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build/CMakeFiles/edit_cache.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build/CMakeFiles/video_yolo26_seg_pose.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build/CMakeFiles/video_yolo26_all_tasks.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build/CMakeFiles/video_inference.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build/CMakeFiles/camera_inference.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/yolos_cpp-build/CMakeFiles/image_inference.dir

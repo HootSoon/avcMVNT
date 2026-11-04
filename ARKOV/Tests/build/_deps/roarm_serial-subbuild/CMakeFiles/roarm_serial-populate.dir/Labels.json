@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_serial-subbuild/CMakeFiles/roarm_serial-populate"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_serial-subbuild/CMakeFiles/roarm_serial-populate.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_serial-subbuild/CMakeFiles/roarm_serial-populate-complete.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_serial-subbuild/roarm_serial-populate-prefix/src/roarm_serial-populate-stamp/roarm_serial-populate-install.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_serial-subbuild/roarm_serial-populate-prefix/src/roarm_serial-populate-stamp/roarm_serial-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_serial-subbuild/roarm_serial-populate-prefix/src/roarm_serial-populate-stamp/roarm_serial-populate-download.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_serial-subbuild/roarm_serial-populate-prefix/src/roarm_serial-populate-stamp/roarm_serial-populate-update.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_serial-subbuild/roarm_serial-populate-prefix/src/roarm_serial-populate-stamp/roarm_serial-populate-patch.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_serial-subbuild/roarm_serial-populate-prefix/src/roarm_serial-populate-stamp/roarm_serial-populate-configure.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_serial-subbuild/roarm_serial-populate-prefix/src/roarm_serial-populate-stamp/roarm_serial-populate-build.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_serial-subbuild/roarm_serial-populate-prefix/src/roarm_serial-populate-stamp/roarm_serial-populate-test.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"roarm_serial-populate"
+		],
+		"name" : "roarm_serial-populate"
+	}
+}

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libroarm_serial_backend.a  CMakeFiles/roarm_serial_backend.dir/__/roarm_serial-src/src/serial.cc.o CMakeFiles/roarm_serial_backend.dir/__/roarm_serial-src/src/impl/unix.cc.o CMakeFiles/roarm_serial_backend.dir/__/roarm_serial-src/src/impl/list_ports/list_ports_linux.cc.o
+/usr/bin/ranlib libroarm_serial_backend.a

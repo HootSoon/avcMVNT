@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_cpp_lite-subbuild/CMakeFiles/roarm_cpp_lite-populate"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_cpp_lite-subbuild/CMakeFiles/roarm_cpp_lite-populate.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_cpp_lite-subbuild/CMakeFiles/roarm_cpp_lite-populate-complete.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_cpp_lite-subbuild/roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-install.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_cpp_lite-subbuild/roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_cpp_lite-subbuild/roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-download.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_cpp_lite-subbuild/roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-update.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_cpp_lite-subbuild/roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-patch.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_cpp_lite-subbuild/roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-configure.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_cpp_lite-subbuild/roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-build.rule"
+		},
+		{
+			"file" : "/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_cpp_lite-subbuild/roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-test.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"roarm_cpp_lite-populate"
+		],
+		"name" : "roarm_cpp_lite-populate"
+	}
+}

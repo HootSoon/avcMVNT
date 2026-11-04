@@ -1,0 +1,10 @@
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/CMakeFiles/edit_cache.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/CMakeFiles/pid_controller_vel.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/CMakeFiles/rebuild_cache.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/CMakeFiles/drive_controller_arm.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/CMakeFiles/arkov_core.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/CMakeFiles/serial.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_cpp_lite-build/CMakeFiles/edit_cache.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_cpp_lite-build/CMakeFiles/roarm_cpp_lite.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_cpp_lite-build/CMakeFiles/rebuild_cache.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/Tests/build/_deps/roarm_cpp_lite-build/CMakeFiles/roarm_serial_backend.dir

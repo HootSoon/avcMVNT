@@ -1,0 +1,3 @@
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/onnxruntime_api-subbuild/CMakeFiles/rebuild_cache.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/onnxruntime_api-subbuild/CMakeFiles/edit_cache.dir
+/home/uafs/Documents/codebase/avcMVNT/ARKOV/objectDetection/onnx/build/_deps/onnxruntime_api-subbuild/CMakeFiles/onnxruntime_api-populate.dir

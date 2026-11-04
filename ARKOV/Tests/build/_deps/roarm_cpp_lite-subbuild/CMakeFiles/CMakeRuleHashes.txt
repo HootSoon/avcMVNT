@@ -1,0 +1,11 @@
+# Hashes of file build rules.
+5ae194bbee9babfc15cfee43569f2886 CMakeFiles/roarm_cpp_lite-populate
+6c65e3178904585c841762c03e2d577a CMakeFiles/roarm_cpp_lite-populate-complete
+4dceb3cfef248f773e9b87bf3e1d2012 roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-build
+3cb93530a854e9a417fa395baa76fbe8 roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-configure
+88681149e4969d9501c6679ab2ccc4db roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-download
+18c4df86a7c0c9d456594e9277e76ecc roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-install
+f97d244a24e255abd9a1d7c8c6f8cae4 roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-mkdir
+6cef32ff562808e2f8364b179c29fbfb roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-patch
+10fb7b2a09b2bc6ca080d3407dad6039 roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-test
+f69f1de7619f247b467f8a4d758b3c89 roarm_cpp_lite-populate-prefix/src/roarm_cpp_lite-populate-stamp/roarm_cpp_lite-populate-update

@@ -11,6 +11,7 @@ pidController::pidController(float p, float i, float d){
     k_p = p;
     k_i = i;
     k_d = d;
+    
 }
 
 void pidController::setPoint(float newSetPoint){
@@ -24,7 +25,13 @@ void pidController::reset(){
 }
 
 float pidController::calculate(float value, float deltaT){
-    if(deltaT <= 0.0f) { return 0.0f; } // this stops an explosion of the algorithm
+    float output = 0.0;
+    if(deltaT <= 0.0f || (setpoint > -0.05f && setpoint < 0.05f)) { 
+        integral = 0.0f;
+        prevValue = 0.0f;
+        error = 0.0f;
+        return 0.0f; 
+    } // this stops an explosion of the algorithm
     
     error = setpoint - value;
     
@@ -33,7 +40,15 @@ float pidController::calculate(float value, float deltaT){
     
     deriv = -(value - prevValue) / deltaT;
     prevValue = value;
+
+    output = (error * k_p) + (integral * k_i) + (deriv * k_d);
     
-    float output = (error * k_p) + (integral * k_i) + (deriv * k_d);
+    if(value >= 0.01f){
+        output += STATIC_FORWARD;
+    }else{ if (value <= -0.01f)
+        output -+ STATIC_FORWARD;
+    }
+
+    
     return std::clamp(output, MIN_OUTPUT, MAX_OUTPUT); // makes sure output is within the max boundaries
 }

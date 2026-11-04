@@ -17,6 +17,8 @@ private:
     static constexpr float MAX_OUTPUT = 100.0f; // these can be changed for whatever were controlling
     static constexpr float MIN_OUTPUT = -100.0f; 
 
+    static constexpr float STATIC_FORWARD = 25.0f; 
+
 public:
     pidController(float p, float i, float d);
     float calculate(float value, float deltaT);
