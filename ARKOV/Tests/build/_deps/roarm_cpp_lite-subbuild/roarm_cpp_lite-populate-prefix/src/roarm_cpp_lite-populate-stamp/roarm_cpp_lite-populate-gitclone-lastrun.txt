@@ -1,3 +1,0 @@
-repository='https://github.com/HootSoon/roarm_cpp_lite.git'
-module=''
-tag='origin'

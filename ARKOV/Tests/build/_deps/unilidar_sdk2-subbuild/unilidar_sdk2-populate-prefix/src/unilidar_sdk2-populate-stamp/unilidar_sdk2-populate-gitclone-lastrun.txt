@@ -1,3 +1,0 @@
-repository='https://github.com/unitreerobotics/unilidar_sdk2.git'
-module=''
-tag='origin'
