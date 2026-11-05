@@ -1,2 +1,0 @@
-/usr/bin/ar qc libroarm_cpp_lite.a  CMakeFiles/roarm_cpp_lite.dir/src/common.cpp.o CMakeFiles/roarm_cpp_lite.dir/src/roarm.cpp.o
-/usr/bin/ranlib libroarm_cpp_lite.a

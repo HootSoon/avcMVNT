@@ -1,3 +1,0 @@
-repository='https://github.com/Geekgineer/YOLOs-CPP.git'
-module=''
-tag='origin'
