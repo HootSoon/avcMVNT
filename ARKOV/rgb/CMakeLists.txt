@@ -10,7 +10,7 @@ include(FetchContent)
 # 1. Fetch github repos
 FetchContent_Declare(
     TCS34725
-    GIT_REPOSITORY https://github.com/libdriver/tcs34725.git
+    GIT_REPOSITORY https://github.com/mkyas/cpsy-tcs34725.git
     GIT_TAG main
 )
 
