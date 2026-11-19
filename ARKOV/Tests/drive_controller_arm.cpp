@@ -44,7 +44,7 @@ int main(){
         std::cout << pose0 << " , " << pose1 << " , " << x << " , " << y << " , " << z <<  std::endl;
 
         if(controller.buttonValues.getIndex(0) == 0){
-            stm32.send_Message("L:" + std::to_string(static_cast<int>(controller.stickValues.getIndex(1)/32767.0f * -100)) + " R:" + std::to_string(static_cast<int>(controller.stickValues.getIndex(3)/32767.0f * 100)),"NON");
+            stm32.send_Message("L:" + std::to_string(static_cast<int>(controller.stickValues.getIndex(3)/32767.0f * 100)) + " R:" + std::to_string(static_cast<int>(controller.stickValues.getIndex(1)/32767.0f * 100)),"NON");
         }else{
             x += (controller.stickValues.getIndex(1)/32767.0f * -1);
             y += (controller.stickValues.getIndex(2)/32767.0f * -1);
