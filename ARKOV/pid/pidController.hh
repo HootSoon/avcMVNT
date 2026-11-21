@@ -9,7 +9,7 @@ private:
 
     float error = 0.0f;
     float setpoint = 0.0f;
-    float prevError = 0.0f;
+    float prevValue = 0.0f;
 
     float integral = 0.0f;
     float deriv = 0.0f;
@@ -17,9 +17,12 @@ private:
     static constexpr float MAX_OUTPUT = 100.0f; // these can be changed for whatever were controlling
     static constexpr float MIN_OUTPUT = -100.0f; 
 
+    static constexpr float STATIC_FORWARD = 25.0f; 
+
 public:
     pidController(float p, float i, float d);
     float calculate(float value, float deltaT);
     void setPoint(float newSetPoint);
+    void reset();
 
 };

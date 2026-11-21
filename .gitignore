@@ -1,2 +1,5 @@
 ./venv
 ./jpg
+*.tar.gz
+**/jetpack_files
+**/build

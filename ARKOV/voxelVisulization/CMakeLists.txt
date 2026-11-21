@@ -1,3 +1,3 @@
 
 add_subdirectory(polyLidar)
-add_subdirectory(polyTest)
+add_subdirectory(polyLidarVoxel)
