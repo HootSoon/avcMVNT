@@ -9,7 +9,7 @@ using namespace std;
 using namespace dnn;
 
 int main() {
-    string modelWeights = "";
+    string model_path = "models/yolov26n.onnx";
     vector<string> class_names;
     ifstream ifs(string(file_path + "").c_str());
     string line; 
@@ -21,7 +21,7 @@ int main() {
         class_names.push_back(line);
     }
 
-    auto net = readNet(file_path + "/*weights*/", file_path + "/*architecture*/", "TensorFlow");
+    //auto net = readNet(file_path + "/*weights*/", file_path + "/*architecture*/", "TensorFlow");
 
     VideoCapture cap(0);
 
