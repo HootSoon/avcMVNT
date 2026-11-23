@@ -121,6 +121,7 @@ target_link_libraries(arkov_core PUBLIC
 set(TEST_SOURCES
     drive_controller_arm.cpp
     pid_controller_vel.cpp
+    drive_controller_arm_cam_ai.cpp
 )
 
 foreach(test_file ${TEST_SOURCES})
