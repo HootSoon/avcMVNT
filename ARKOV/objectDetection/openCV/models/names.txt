@@ -1,0 +1,8 @@
+blue_ball
+blue_bucket
+green_ball
+green_bucket
+red_ball
+red_bucket
+yellow_ball
+yellow_bucket
